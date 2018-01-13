@@ -46,11 +46,25 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+set (PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+
+set (PROJECT_LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
+
+link_directories(${PROJECT_LIB_DIR})
+
+
+
+set (PROJECT_TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
+
 set (PROJECT_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 
 
 add_subdirectory(${PROJECT_SOURCE_DIR})
 
+
+add_subdirectory(${PROJECT_TESTS_DIR})
+
+#add_test(OCUtilsTest OCUtils)
 
 
 set(CONFIGURED_ONCE TRUE CACHE INTERNAL
