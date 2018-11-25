@@ -1,6 +1,7 @@
 set (OCUtilsTest_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/events)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/observer)
 
 add_executable(OCUtilsTest ${OCUtilsTest_SOURCES})
 

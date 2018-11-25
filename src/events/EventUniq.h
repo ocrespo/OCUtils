@@ -13,6 +13,8 @@
 //std
 #include <functional>
 
+#include "../utils/CompilerOptions.h"
+
 template <typename ...Ts>
 class EventUniq: public Event {
 
@@ -20,18 +22,17 @@ public:
 
 	EventUniq(): Event(), function(nullptr){}
 
-	EventUniq(const std::function<Ts...>& call) : Event(), function(call){}
-
+	EventUniq(const std::function<void(Ts...)>& call ) : Event(), function(call){}
 
 	virtual ~EventUniq(){};
 
 
-	bool registerCall(const std::function<Ts...>& call, int key = 0){
+	bool registerCall(const std::function<void(Ts...)>& call,UNUSED int key = 0){
 		function = call;
 		return true;
 	}
 
-	bool unregisterCall(int key = 0){
+	bool unregisterCall(UNUSED int key = 0){
 		function = nullptr;
 
 		return true;
@@ -41,7 +42,7 @@ public:
 		unregisterCall();
 	}
 
-	bool call(Ts... args){
+	bool callArgs(Ts... args){
 		if(function){
 			function(args...);
 			return true;
@@ -49,10 +50,9 @@ public:
 		return false;
 	}
 
-
 protected:
 
-	std::function<Ts...> function;
+	std::function<void(Ts...)> function;
 
 
 private:

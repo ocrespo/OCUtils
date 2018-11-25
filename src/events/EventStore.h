@@ -26,8 +26,7 @@ public:
 
 	}
 
-	EventStore(Ts... arg) : EventUniq<Ts...>(arg...), args( std::make_tuple(arg...)){
-
+	EventStore(std::function<void(Ts...)> arg) : EventUniq<Ts...>(arg){
 	}
 
 	virtual ~EventStore(){

@@ -22,11 +22,11 @@ class EventList: public Event {
 public:
 
 	EventList(){
-		functionList.resver(5);
+		functionList.reserve(5);
 	}
 
 	EventList(int size){
-		functionList.resver(size);
+		functionList.reserve(size);
 	}
 
 
@@ -34,10 +34,10 @@ public:
 
 
 
-	bool registerCall(const std::function<Ts...>& call, int key){
+	bool registerCall(const std::function<void(Ts...)>& call, int key){
 		auto item_found (findElement(key));
 
-		if( item_found != functionList.end() ){
+		if( item_found == functionList.end() ){
 			functionList.emplace_back(std::make_pair(key,call));
 
 			return true;
@@ -48,7 +48,7 @@ public:
 
 	}
 
-	bool unregisterCall(int key = 0){
+	bool unregisterCall(int key){
 		auto item_found (findElement(key));
 
 		if( item_found != functionList.end() ){
@@ -64,17 +64,18 @@ public:
 		functionList.clear();
 	}
 
-	bool call(Ts... args){
+	bool callArgs(Ts... args){
 		if (functionList.empty()){
 			return false;
 		}
 
 		for(auto it = functionList.cbegin(); it != functionList.cend(); ++it){
-			*it(args...);
+			it->second(args...);
 		}
 
 		return true;
 	}
+
 
 
 protected:
@@ -89,7 +90,7 @@ private:
 				});
 	}
 
-	using element_t = std::pair<int, std::function<Ts...>>;
+	using element_t = std::pair<int, std::function<void(Ts...)>>;
 
 	std::vector<element_t> functionList;
 
