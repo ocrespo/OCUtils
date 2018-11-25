@@ -15,6 +15,9 @@
 
 #include "../utils/CompilerOptions.h"
 
+/**
+ * Event to call a individual function
+ */
 template <typename ...Ts>
 class EventUniq: public Event {
 
@@ -26,22 +29,40 @@ public:
 
 	virtual ~EventUniq(){};
 
-
+	/**
+	 * Assign the given callback
+	 * @param call
+	 * @param key
+	 * @return always true
+	 */
 	bool registerCall(const std::function<void(Ts...)>& call,UNUSED int key = 0){
 		function = call;
 		return true;
 	}
 
+	/**
+	 * Remove the current assigned callback
+	 * @param key unused
+	 * @return always true
+	 */
 	bool unregisterCall(UNUSED int key = 0){
 		function = nullptr;
 
 		return true;
 	}
 
+	/**
+	 * Unregister the callback
+	 */
 	void clean(){
 		unregisterCall();
 	}
 
+	/**
+	 * Call the callback with the given args
+	 * @param args
+	 * @return
+	 */
 	bool callArgs(Ts... args){
 		if(function){
 			function(args...);

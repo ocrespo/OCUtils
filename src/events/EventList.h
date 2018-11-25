@@ -16,15 +16,25 @@
 #include <vector>
 #include <algorithm>
 
+/**
+ * Store a list of callbacks
+ */
 template <typename ...Ts>
 class EventList: public Event {
 
 public:
 
+	/**
+	 * Create an empty (pre-reserve 5)
+	 */
 	EventList(){
 		functionList.reserve(5);
 	}
 
+	/**
+	 * Initialise the give size
+	 * @param size
+	 */
 	EventList(int size){
 		functionList.reserve(size);
 	}
@@ -32,8 +42,12 @@ public:
 
 	virtual ~EventList(){};
 
-
-
+	/**
+	 * Register a call
+	 * @param call
+	 * @param key the key to identify the callback
+	 * @return true on success
+	 */
 	bool registerCall(const std::function<void(Ts...)>& call, int key){
 		auto item_found (findElement(key));
 
@@ -44,10 +58,13 @@ public:
 		}
 
 		return false;
-
-
 	}
 
+	/**
+	 * Unregister a call
+	 * @param key the key to identify the callback
+	 * @return true on success
+	 */
 	bool unregisterCall(int key){
 		auto item_found (findElement(key));
 
@@ -60,10 +77,18 @@ public:
 		return false;
 	}
 
+	/**
+	 * Remove all the registered calls
+	 */
 	void clean(){
 		functionList.clear();
 	}
 
+	/**
+	 * Call the events
+	 * @param args the arguments to use
+	 * @return true if there is any event to call
+	 */
 	bool callArgs(Ts... args){
 		if (functionList.empty()){
 			return false;
@@ -83,6 +108,11 @@ protected:
 
 private:
 
+	/**
+	 * Find the event with the given key
+	 * @param key
+	 * @return
+	 */
 	auto findElement(int key){
 		return std::find_if(functionList.begin(), functionList.end(),
 				[&key](const element_t &item){

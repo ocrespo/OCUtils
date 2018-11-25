@@ -17,15 +17,25 @@
 
 #include <tuple>
 
+/**
+ * Store the parameters to call the callback later
+ */
 template <typename ...Ts>
 class EventStore: public EventUniq<Ts...> {
 
 public:
 
+	/**
+	 * Default constructor
+	 */
 	EventStore() : EventUniq<Ts...>(){
 
 	}
 
+	/**
+	 * Create and event with the given callback, need to set the args later
+	 * @param arg
+	 */
 	EventStore(std::function<void(Ts...)> arg) : EventUniq<Ts...>(arg){
 	}
 
@@ -33,6 +43,10 @@ public:
 
 	}
 
+	/**
+	 * Call the callback with the saved args
+	 * @return
+	 */
 	virtual bool call() override{
 		if(this->function){
 			callTuple(args,std::index_sequence_for<Ts...>());
@@ -41,6 +55,10 @@ public:
 		return false;
 	}
 
+	/**
+	 * Set the values to use on the callback
+	 * @param values
+	 */
 	void setValues(Ts... values){
 		args = std::make_tuple(values...);
 	}
