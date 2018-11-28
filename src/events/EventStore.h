@@ -17,6 +17,9 @@
 
 #include <tuple>
 
+namespace ocutils {
+
+
 /**
  * Store the parameters to call the callback later
  */
@@ -77,6 +80,7 @@ private:
 
 };
 
+}  /* namespace ocutils */
 
 
 #endif /* SRC_EVENTS_EVENTSTORE_H_ */

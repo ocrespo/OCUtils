@@ -37,7 +37,7 @@ TEST_F(EventUniqTest, Test) {
     EXPECT_EQ(summoned,false);
     EXPECT_EQ(count_summoned,0);
 
-    EventUniq<bool> event(std::bind(&EventUniqTest::summon,this,std::placeholders::_1));
+    ocutils::EventUniq<bool> event(std::bind(&EventUniqTest::summon,this,std::placeholders::_1));
 
     bool ret{event.callArgs(true)};
 

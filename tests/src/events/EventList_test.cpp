@@ -36,7 +36,7 @@ TEST_F(EventListTest, Test) {
     EXPECT_EQ(summoned,false);
     EXPECT_EQ(count_summoned,0);
 
-    EventList<bool> event(2);
+    ocutils::EventList<bool> event(2);
 
     bool ret{event.callArgs(true)};
     EXPECT_EQ(ret,false);

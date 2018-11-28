@@ -12,6 +12,8 @@
 #include <stdint.h>
 #include <functional>
 
+namespace ocutils {
+
 /**
  * Observable class, K is an enum with last item called "Max" and T a pointer to an event
  */
@@ -148,5 +150,7 @@ private:
 	std::vector<T> observers;
 
 };
+
+}  /* namespace ocutils */
 
 #endif /* SRC_OBSERVER_OBSERVABLE_H_ */

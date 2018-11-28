@@ -16,6 +16,9 @@
 #include <vector>
 #include <algorithm>
 
+namespace ocutils {
+
+
 /**
  * Store a list of callbacks
  */
@@ -126,6 +129,7 @@ private:
 
 };
 
+}  /* namespace ocutils */
 
 
 #endif /* SRC_EVENTS_EVENTLIST_H_ */

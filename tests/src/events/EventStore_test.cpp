@@ -36,7 +36,7 @@ TEST_F(EventStoreTest, Test) {
     EXPECT_EQ(summoned,false);
     EXPECT_EQ(count_summoned,0);
 
-    EventStore<bool> event(std::bind(&EventStoreTest::summon,this,std::placeholders::_1));
+    ocutils::EventStore<bool> event(std::bind(&EventStoreTest::summon,this,std::placeholders::_1));
 
     event.setValues(true);
 

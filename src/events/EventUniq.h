@@ -15,6 +15,8 @@
 
 #include "../utils/CompilerOptions.h"
 
+namespace ocutils {
+
 /**
  * Event to call a individual function
  */
@@ -79,7 +81,9 @@ protected:
 private:
 
 
-
 };
+
+}  /* namespace ocutils */
+
 
 #endif /* SRC_EVENTS_EVENTUNIQ_H_ */

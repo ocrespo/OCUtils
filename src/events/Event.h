@@ -10,6 +10,8 @@
 
 #include <assert.h>
 
+namespace ocutils {
+
 class Event{
 
 public:
@@ -30,6 +32,8 @@ private:
 
 
 };
+
+}  /* namespace ocutils */
 
 
 
