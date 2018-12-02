@@ -62,8 +62,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR})
 
 add_subdirectory(${PROJECT_TESTS_DIR})
 
-#add_test(OCUtilsTest OCUtils)
-
 
 set(CONFIGURED_ONCE TRUE CACHE INTERNAL
     "A flag showing that CMake has configured at least once.")
