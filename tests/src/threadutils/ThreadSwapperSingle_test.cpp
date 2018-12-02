@@ -43,7 +43,6 @@ TEST_F(ThreadSwapperSingleTest, Test) {
     std::thread::id thread_id_1;
     std::thread::id thread_id_2;
 
-
 	ocutils::EventStore<bool> *event(new ocutils::EventStore<bool>(std::bind(&ThreadSwapperSingleTest::summon,this,std::placeholders::_1)));
 	event->setValues(false);
 	thread1.execute(event);

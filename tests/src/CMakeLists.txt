@@ -19,6 +19,9 @@ target_link_libraries(OCUtilsTest ${CMAKE_THREAD_LIBS_INIT}
                               	gtest
                                	)
 
+install (TARGETS OCUtilsTest DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin)
+
+
 add_custom_command(TARGET OCUtilsTest
                     POST_BUILD
                     COMMAND OCUtilsTest

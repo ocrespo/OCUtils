@@ -33,28 +33,30 @@ public:
 protected:
 
 	ThreadSwapper(int reserve = 20, int sleep_for_ms = 500):
+			queue(reserve),
 			stop(false),
 			thread(&ThreadSwapper::loop,this),
-			sleep(sleep_for_ms),
-			queue(reserve){
+			sleep(sleep_for_ms){
 	};
 
 private:
 
 	void loop(){
-		Event* event(nullptr);
+		Event* event;
 		while(!stop){
-			queue.wait_dequeue(event);
-			event->call();
-			delete event;
+			if(queue.wait_dequeue_timed(event,std::chrono::milliseconds(500))){
+				event->call();
+				delete event;
+			}
 		}
 	}
+
+	T queue;
 
 	bool stop;
 	std::thread thread;
 	int sleep;
 
-	T queue;
 };
 
 } /* namespace threads */
