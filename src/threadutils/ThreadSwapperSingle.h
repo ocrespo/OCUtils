@@ -17,7 +17,7 @@ namespace ocutils {
 /**
  * Swap the execution of the given Event to another thread
  */
-class ThreadSwapperSingle : public ThreadSwapper<moodycamel::ReaderWriterQueue<Event*>>{
+class ThreadSwapperSingle : public ThreadSwapper<moodycamel::BlockingReaderWriterQueue<Event*>>{
 public:
 	inline ThreadSwapperSingle(int reserve = 20, int sleep_for_ms = 500):
 		ThreadSwapper(reserve,sleep_for_ms){}

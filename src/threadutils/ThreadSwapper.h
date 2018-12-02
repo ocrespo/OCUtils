@@ -42,14 +42,11 @@ protected:
 private:
 
 	void loop(){
+		Event* event(nullptr);
 		while(!stop){
-			Event* event(nullptr);
-			while(queue.try_dequeue(event)){
-				event->call();
-				delete event;
-			}
-			std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
+			queue.wait_dequeue(event);
+			event->call();
+			delete event;
 		}
 	}
 
