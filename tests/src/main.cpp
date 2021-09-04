@@ -8,7 +8,16 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include "benchmark/benchmark.h"
+
+
 int main(int argc, char **argv) {
+
+    ::benchmark::Initialize(&argc, argv);
+    if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
+    ::benchmark::RunSpecifiedBenchmarks();
+    ::benchmark::Shutdown();
+
 	::testing::InitGoogleTest(&argc, argv);
 
 	// The following line causes Google Mock to throw an exception on failure,

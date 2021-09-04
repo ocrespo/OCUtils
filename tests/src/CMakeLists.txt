@@ -17,6 +17,7 @@ include_directories(${PROJECT_SOURCE_DIR})
 target_link_libraries(OCUtilsTest ${CMAKE_THREAD_LIBS_INIT} 
 								gmock
                               	gtest
+                              	benchmark
                                	)
 
 install (TARGETS OCUtilsTest DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin)
